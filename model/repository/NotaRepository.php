@@ -18,7 +18,7 @@ class NotaRepository {
 
     public function __construct() {
         $this->filePath = dirname(__FILE__, 3) . DIRECTORY_SEPARATOR . self::RUTA_FICHERO;
-        echo "## $this->filePath";
+       
     }
 
     public function getNotas(): array {
