@@ -10,7 +10,7 @@
  *
  * @author maria
  */
-class NotaRepository {
+class NotaRepository implements INotaRepository{
 
     const RUTA_FICHERO = "config" . DIRECTORY_SEPARATOR . "notas.json";
 
@@ -26,7 +26,7 @@ class NotaRepository {
         return json_decode(file_get_contents($this->filePath), true);
     }
 
-    private function saveNotas(array $notas): bool {
+    public function saveNotas(array $notas): bool {
 
         $writtenBytes = file_put_contents($this->filePath, json_encode($notas));
 

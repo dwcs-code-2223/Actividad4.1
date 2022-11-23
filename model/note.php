@@ -5,7 +5,7 @@
 class Note {
 
     
-    private $repository;
+    private INotaRepository $repository;
 
     public function __construct() {
         $this->repository = new NotaRepository();
@@ -13,10 +13,7 @@ class Note {
 
     /* Set conection */
 
-    public function getConection() {
-        $dbObj = new Db();
-        $this->conection = $dbObj->conection;
-    }
+   
 
     /* Get all notes */
 
