@@ -4,7 +4,7 @@
 
 class Note {
 
-    
+ 
     private INotaRepository $repository;
 
     public function __construct() {

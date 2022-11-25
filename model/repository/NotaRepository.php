@@ -10,7 +10,7 @@
  *
  * @author maria
  */
-class NotaRepository implements INotaRepository{
+class NotaRepository implements INotaRepository {
 
     const RUTA_FICHERO = "config" . DIRECTORY_SEPARATOR . "notas.json";
 
@@ -20,11 +20,11 @@ class NotaRepository implements INotaRepository{
     public function __construct() {
         $this->filePath = dirname(__FILE__, 3) . DIRECTORY_SEPARATOR . self::RUTA_FICHERO;
         $this->arrayNotas = json_decode(file_get_contents($this->filePath), true);
-       // echo "## $this->filePath";
+        // echo "## $this->filePath";
     }
 
     public function getNotas(): array {
-      
+
         return $this->arrayNotas;
     }
 
@@ -62,11 +62,10 @@ class NotaRepository implements INotaRepository{
         }
         return $encontrado;
     }
-    
-    
+
     public function deleteNota(int $id): bool {
-        
-  
+
+
         $clave = null;
 
         foreach ($this->arrayNotas as $key => $nota) {
@@ -78,14 +77,14 @@ class NotaRepository implements INotaRepository{
         }
         unset($this->arrayNotas[$clave]);
 
-        if ($clave != null) {
+        if ($clave !== null) {
             return $this->saveNotas($this->arrayNotas);
         } else
             return false;
     }
-    
-      public function create($nota) {
-       
+
+    public function create($nota) {
+
         $id = $this->getMaxId($this->arrayNotas);
         $nota["id"] = $id;
 
@@ -111,6 +110,5 @@ class NotaRepository implements INotaRepository{
 
         return ++$max_id;
     }
-
 
 }
