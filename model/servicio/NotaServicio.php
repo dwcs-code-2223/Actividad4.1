@@ -2,7 +2,7 @@
 
 //require 'repository/NotaRepository.php';
 
-class Note {
+class NotaServicio {
 
  
     private INotaRepository $repository;

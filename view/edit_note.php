@@ -1,34 +1,32 @@
 <?php
 $id = $title = $content = "";
 
-if (isset($dataToView["data"]["id"])) {
-$id = $dataToView["data"]["id"];
+if ($dataToView["data"]->getId() !== null) {
+    $id = $dataToView["data"]->getId();
 }
-if (isset($dataToView["data"]["titulo"])) {
-$titulo = $dataToView["data"]["titulo"];
+if ($dataToView["data"]->getTitulo() !== null) {
+    $titulo = $dataToView["data"]->getTitulo();
 }
-if (isset($dataToView["data"]["contenido"])) {
-$contenido = $dataToView["data"]["contenido"];
+if ($dataToView["data"]->getContenido() !== null) {
+    $contenido = $dataToView["data"]->getContenido();
 }
-
-
 ?>
 <div class="row">
  <!--Solo se establece un campo "error" si se ha realizado un (save) exitoso o no-->
     <?php
-    if(isset($dataToView["data"]["error"]) && ($dataToView["data"]["error"]===false )):
+    if($dataToView["data"]->getEstado()===Util::OPERATION_OK):
     ?>
     <div class="alert alert-success">
         Operación realizada correctamente. <a href="FrontController.php?controller=nota&action=list">Volver al listado</a>
     </div>
     <?php
-   elseif(isset($dataToView["data"]["error"]) && ($dataToView["data"]["error"]===true )):
+   elseif($dataToView["data"]->getEstado()===Util::OPERATION_NOK):
     ?>
     <div class="alert alert-danger">
         Ha ocurrido algún problema y no se ha podido guardar la nota. <a href="FrontController.php?controller=nota&action=list">Volver al listado</a>
     </div>
   <?php
-   elseif(!isset($dataToView["data"]["error"])):
+   elseif($dataToView["data"]->getEstado()===Util::NO_OPERATION):
     ?>
     <form class="form" action="FrontController.php?controller=Nota&action=save" method="POST">
         <input type="hidden" name="id" value="<?php echo $id; ?>" />

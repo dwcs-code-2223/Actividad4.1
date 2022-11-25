@@ -15,11 +15,16 @@ class NotaRepository implements INotaRepository {
     const RUTA_FICHERO = "config" . DIRECTORY_SEPARATOR . "notas.json";
 
     private $filePath;
+    //Array de objetos de la clase Nota
     private $arrayNotas = [];
 
     public function __construct() {
         $this->filePath = dirname(__FILE__, 3) . DIRECTORY_SEPARATOR . self::RUTA_FICHERO;
-        $this->arrayNotas = json_decode(file_get_contents($this->filePath), true);
+        $arrayAsoc = json_decode(file_get_contents($this->filePath), true);
+        foreach ($arrayAsoc as $key => $value) {
+            $nota = Util::json_decode_array_to_class($value, "Nota");
+            $this->arrayNotas[] = $nota;
+        }
         // echo "## $this->filePath";
     }
 
@@ -38,7 +43,7 @@ class NotaRepository implements INotaRepository {
     public function getNotaById(int $id) {
 
         foreach ($this->arrayNotas as $key => $nota) {
-            if ($nota["id"] === $id) {
+            if ($nota->getId() === $id) {
                 return $nota;
             }
         }

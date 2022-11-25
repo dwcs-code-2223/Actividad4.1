@@ -4,19 +4,19 @@ class NotaController {
 
     public $page_title;
     public $view;
-    private $noteObj;
+    private $notaServicio;
 
     public function __construct() {
         $this->view = 'list_note';
         $this->page_title = '';
-        $this->noteObj = new Note();
+        $this->notaServicio = new NotaServicio();
     }
 
     /* List all notes */
 
     public function list() {
         $this->page_title = 'Listado de notas';
-        return $this->noteObj->getNotas();
+        return $this->notaServicio->getNotas();
     }
 
     /* Load note for edit */
@@ -28,7 +28,7 @@ class NotaController {
         if (isset($_GET["id"])) {
             $id = $_GET["id"];
 
-            $nota = $this->noteObj->getNoteById($id);
+            $nota = $this->notaServicio->getNoteById($id);
         } else {
             //para creación
             $nota = ["id" => "", "titulo" => "", "contenido" => ""];
@@ -42,13 +42,13 @@ class NotaController {
         $this->view = 'edit_note';
         $this->page_title = 'Editar nota';
 
-        $notaGuardada = $this->noteObj->save($_POST);    
+        $notaGuardada = $this->notaServicio->save($_POST);    
         //para saber si ha habido error o no
         //Solo se establece un campo "error" si se ha realizado un (save) exitoso o no
-        if ($notaGuardada == null) {
-            $notaGuardada["error"] = true;
+        if ($notaGuardada == null) {            
+            $notaGuardada->setEstado(Util::OPERATION_NOK);
         } else {
-            $notaGuardada["error"] = ($notaGuardada == null);
+            $notaGuardada->setEstado(Util::OPERATION_OK);
         }
 
     
@@ -60,7 +60,7 @@ class NotaController {
     public function confirmDelete() {
         $this->page_title = 'Eliminar nota';
         $this->view = 'confirm_delete_note';
-        return $this->noteObj->getNoteById($_GET["id"]);
+        return $this->notaServicio->getNoteById($_GET["id"]);
     }
 
     /* Delete */
@@ -68,7 +68,7 @@ class NotaController {
     public function delete(): bool {
         $this->page_title = 'Listado de notas';
         $this->view = 'delete_note';
-        return $this->noteObj->deleteNoteById($_POST["id"]);
+        return $this->notaServicio->deleteNoteById($_POST["id"]);
     }
 
 }
