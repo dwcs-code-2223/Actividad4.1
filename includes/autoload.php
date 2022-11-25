@@ -14,7 +14,7 @@ spl_autoload_register(function ($nombre_clase) {
         $ruta = dirname(__DIR__) . '\\' . $dir . '\\' . $nombre_clase . '.php';
         $ruta = str_replace("\\", DIRECTORY_SEPARATOR, $ruta);
         
-        echo "## autoload.php ". $ruta . "<br/>";
+       // echo "## autoload.php ". $ruta . "<br/>";
         
         if (file_exists($ruta)) {
             require_once $ruta;

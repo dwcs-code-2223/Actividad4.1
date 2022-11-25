@@ -34,11 +34,11 @@ $contenido = $dataToView["data"]["contenido"];
         <input type="hidden" name="id" value="<?php echo $id; ?>" />
         <div class="form-group">
             <label>Título</label>
-            <input class="form-control" type="text" name="title" value="<?php echo $titulo; ?>" />
+            <input class="form-control" type="text" name="title" value="<?php echo $titulo; ?>" required />
         </div>
         <div class="form-group mb-2">
             <label>Contenido</label>
-            <textarea class="form-control" style="white-space: pre-wrap;" name="content"><?php echo $contenido; ?></textarea>
+            <textarea class="form-control" style="white-space: pre-wrap;" name="content" required><?php echo $contenido; ?> </textarea>
         </div>
         <input type="submit" value="Guardar" class="btn btn-primary"/>
         <a class="btn btn-outline-danger" href="FrontController.php?controller=Nota&action=list">Cancelar</a>

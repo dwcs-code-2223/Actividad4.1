@@ -1,1 +1,18 @@
-{"2":{"id":3,"titulo":"Reuni\u00f3n de departamento4","contenido":"Solicitar aumento de presupuesto, Felicitar al personal4"},"4":{"titulo":"PHP","contenido":"POO y capas","id":5},"5":{"titulo":"aa22346","contenido":"ab22346","id":6},"6":{"titulo":"b","contenido":"b","id":7},"7":{"titulo":"c","contenido":"c","id":8}}
+[
+  {
+    "id": 1,
+    "titulo": "Lista de la compra",
+    "contenido": "Leche, Agua, Pan"
+     
+  },
+  {
+    "id": 2,
+    "titulo": "TO DO List",
+    "contenido": "Reservar restaurante el 24/12/2022, Comprar los regalos"
+  },
+  {
+    "id": 3,
+    "titulo": "Reunión de departamento",
+    "contenido": "Solicitar aumento de presupuesto, Felicitar al personal"
+  }
+]

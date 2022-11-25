@@ -79,7 +79,11 @@ class Note {
         return $notaToVista;
     }
 
-    
+     /* Delete note by id */
+
+    public function deleteNoteById($id) :bool{
+        return $this->repository->deleteNota($id);
+    }
 
 }
 
