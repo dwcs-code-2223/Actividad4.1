@@ -74,7 +74,7 @@ class NotaRepository implements INotaRepository {
         $clave = null;
 
         foreach ($this->arrayNotas as $key => $nota) {
-            if ($nota["id"] === $id) {
+            if ($nota->getId() === $id) {
                 $clave = $key;
 
                 break;
@@ -84,8 +84,9 @@ class NotaRepository implements INotaRepository {
 
         if ($clave !== null) {
             return $this->saveNotas($this->arrayNotas);
-        } else
+        } else {
             return false;
+        }
     }
 
     public function create($nota) {
@@ -117,5 +118,7 @@ class NotaRepository implements INotaRepository {
 
         return ++$max_id;
     }
+    
+   
 
 }
