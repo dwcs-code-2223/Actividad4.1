@@ -31,7 +31,7 @@ class NotaController {
             $nota = $this->notaServicio->getNoteById($id);
         } else {
             //para creación
-            $nota = ["id" => "", "titulo" => "", "contenido" => ""];
+            $nota = new Nota();
         }
         return $nota;
     }

@@ -14,7 +14,7 @@ class Nota implements JsonSerializable{
     
     use ViewData;
     
-    private int $id;
+    private ?int $id;
     private string $titulo;
     private string $contenido;
     
@@ -25,7 +25,7 @@ class Nota implements JsonSerializable{
     }
 
     
-    public function getId(): int {
+    public function getId(): ?int {
         return $this->id;
     }
 

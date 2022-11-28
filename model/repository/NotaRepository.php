@@ -55,15 +55,15 @@ class NotaRepository implements INotaRepository {
         $encontrado = false;
 
         foreach ($this->arrayNotas as $key => $nota) {
-            if ($nota["id"] === $notaToUpdate["id"]) {
+            if ($nota->getId() === $notaToUpdate->getId()) {
                 $encontrado = true;
-                $this->arrayNotas[$key]["titulo"] = $notaToUpdate["titulo"];
-                $this->arrayNotas[$key]["contenido"] = $notaToUpdate["contenido"];
+                $this->arrayNotas[$key]->setTitulo( $notaToUpdate->getTitulo());
+                $this->arrayNotas[$key]->setContenido( $notaToUpdate->getContenido());
             }
         }
 
         if ($encontrado) {
-            $this->saveNotas($this->arrayNotas);
+           $encontrado = $encontrado && $this->saveNotas($this->arrayNotas);
         }
         return $encontrado;
     }
@@ -91,7 +91,7 @@ class NotaRepository implements INotaRepository {
     public function create($nota) {
 
         $id = $this->getMaxId($this->arrayNotas);
-        $nota["id"] = $id;
+        $nota->setId($id);
 
         array_push($this->arrayNotas, $nota);
         if ($this->saveNotas($this->arrayNotas)) {
@@ -104,11 +104,13 @@ class NotaRepository implements INotaRepository {
 
     private function getMaxId() {
 
-        $arrayNotas = array_values($this->arrayNotas);
+        //$arrayNotas = array_values($this->arrayNotas);
 
+        //Por cada objeto de clase Nota obtenemos su id y creamos un 
+        //array con solo los ids
         $array_ids = array_map(function ($nota) {
-            return $nota["id"];
-        }, $arrayNotas
+            return $nota->getId();
+        }, $this->arrayNotas
         );
 
         $max_id = max($array_ids);

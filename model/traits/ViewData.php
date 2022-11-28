@@ -11,10 +11,11 @@
  * @author mfernandez
  */
 trait ViewData {
+
     //put your code here
-    
-    private int $estado=Util::NO_OPERATION;
-    
+
+    private int $estado = Util::NO_OPERATION;
+
     public function getEstado(): int {
         return $this->estado;
     }
@@ -22,6 +23,5 @@ trait ViewData {
     public function setEstado(int $estado): void {
         $this->estado = $estado;
     }
-
 
 }

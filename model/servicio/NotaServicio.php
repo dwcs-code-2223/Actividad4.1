@@ -57,8 +57,8 @@ class NotaServicio {
 
 
         if ($exists) {
-            $actualNote["titulo"] = $title;
-            $actualNote["contenido"] = $content;
+            $actualNote->setTitulo( $title);
+            $actualNote->setContenido($content);
             if ($this->repository->updateNota($actualNote)) {
                 $notaToVista = $actualNote;
             }
@@ -66,8 +66,9 @@ class NotaServicio {
                 $notaToVista = null;
             }
         } else {
-            $newNote["titulo"] = $title;
-            $newNote["contenido"] = $content;
+            $newNote = new Nota();
+            $newNote->setTitulo($title);
+            $newNote->setContenido($content);
 
             $notaToVista = $this->repository->create($newNote);
           
