@@ -11,15 +11,13 @@
  */
 interface INotaRepository {
 
-    public function getNotas(): array;
+    public function getNotas(): array; 
 
-    public function saveNotas(array $notas): bool;
+    function getNotaById(int $id):Nota;
 
-    function getNotaById(int $id);
-
-    public function updateNota($notaToUpdate): bool;
+    public function updateNota(Nota $notaToUpdate): bool;
 
     public function deleteNota(int $id): bool;
     
-    public function create($nota);
+    public function create(Nota $nota):Nota;
 }

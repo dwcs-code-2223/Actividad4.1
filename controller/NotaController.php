@@ -41,17 +41,34 @@ class NotaController {
     public function save() {
         $this->view = 'edit_note';
         $this->page_title = 'Editar nota';
+        
+        $id=null;
+        $title="";
+        $content="";
+        
+        if (isset($_POST["id"]) and $_POST["id"] != '') {
+            $id = $_POST["id"];
+        }
+           /* Received values */
+        if (isset($_POST["title"])) {
+            $title = $_POST["title"];
+        }
+        if (isset($_POST["content"])) {
+            $content = $_POST["content"];
+        }
+        
+        $nota = new Nota($id, $title, $content);   
 
-        $notaGuardada = $this->notaServicio->save($_POST);    
+        $notaGuardada = $this->notaServicio->save($nota);
         //para saber si ha habido error o no
         //Solo se establece un campo "error" si se ha realizado un (save) exitoso o no
-        if ($notaGuardada == null) {            
+        if ($notaGuardada == null) {
             $notaGuardada->setEstado(Util::OPERATION_NOK);
         } else {
             $notaGuardada->setEstado(Util::OPERATION_OK);
         }
 
-    
+
         return $notaGuardada;
     }
 

@@ -40,7 +40,7 @@ class NotaRepository implements INotaRepository {
         return ($writtenBytes !== false);
     }
 
-    public function getNotaById(int $id) {
+    public function getNotaById(int $id):Nota {
 
         foreach ($this->arrayNotas as $key => $nota) {
             if ($nota->getId() === $id) {
@@ -50,7 +50,7 @@ class NotaRepository implements INotaRepository {
         return null;
     }
 
-    public function updateNota($notaToUpdate): bool {
+    public function updateNota(Nota $notaToUpdate): bool {
 
         $encontrado = false;
 
@@ -89,7 +89,7 @@ class NotaRepository implements INotaRepository {
         }
     }
 
-    public function create($nota) {
+    public function create(Nota $nota):Nota {
 
         $id = $this->getMaxId($this->arrayNotas);
         $nota->setId($id);
