@@ -7,10 +7,11 @@
     if (count($dataToView["data"]) > 0) {
         foreach ($dataToView["data"] as $note) {
             ?>
-            <div class="col-md-3">
-                <div class="card-body border border-secondary rounded">
+            <div class="col-md-3 card border border-secondary rounded m-2">
+                <img src="../files/no_picture.jpg" class="card-img-top" alt="No picture">
+                <div class="card-body ">
                     <h5 class="card-title"><?php echo $note->getTitulo(); ?></h5>
-             
+
                     <div class="card-text"><?php echo nl2br($note->getContenido()); ?></div>
                     <hr class="mt-1"/>
                     <a href="FrontController.php?controller=Nota&action=edit&id=<?php echo $note->getId(); ?>" class="btn btn-primary">Editar</a>
@@ -18,7 +19,7 @@
                 </div>
             </div>
             <?php
-        }   
+        }
     } else {
         ?>
         <div class="alert alert-info">

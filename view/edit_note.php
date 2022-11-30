@@ -29,7 +29,7 @@ if ($dataToView["data"]->getContenido() !== null) {
    elseif($dataToView["data"]->getEstado()===Util::NO_OPERATION):
     ?>
     <form class="form" action="FrontController.php?controller=Nota&action=save" 
-          method="POST">
+          method="POST" enctype="multipart/form-data">
         <input type="hidden" name="id" value="<?php echo $id; ?>" />
         <div class="form-group">
             <label>Título</label>
