@@ -40,7 +40,7 @@ class NotaRepository implements INotaRepository {
         return ($writtenBytes !== false);
     }
 
-    public function getNotaById(int $id):Nota {
+    public function getNotaById(int $id): Nota {
 
         foreach ($this->arrayNotas as $key => $nota) {
             if ($nota->getId() === $id) {
@@ -57,13 +57,13 @@ class NotaRepository implements INotaRepository {
         foreach ($this->arrayNotas as $key => $nota) {
             if ($nota->getId() === $notaToUpdate->getId()) {
                 $encontrado = true;
-                $this->arrayNotas[$key]->setTitulo( $notaToUpdate->getTitulo());
-                $this->arrayNotas[$key]->setContenido( $notaToUpdate->getContenido());
+                $this->arrayNotas[$key]->setTitulo($notaToUpdate->getTitulo());
+                $this->arrayNotas[$key]->setContenido($notaToUpdate->getContenido());
             }
         }
 
         if ($encontrado) {
-           $encontrado = $encontrado && $this->saveNotas($this->arrayNotas);
+            $encontrado = $encontrado && $this->saveNotas($this->arrayNotas);
         }
         return $encontrado;
     }
@@ -89,7 +89,7 @@ class NotaRepository implements INotaRepository {
         }
     }
 
-    public function create(Nota $nota):Nota {
+    public function create(Nota $nota): Nota {
 
         $id = $this->getMaxId($this->arrayNotas);
         $nota->setId($id);
@@ -106,7 +106,6 @@ class NotaRepository implements INotaRepository {
     private function getMaxId() {
 
         //$arrayNotas = array_values($this->arrayNotas);
-
         //Por cada objeto de clase Nota obtenemos su id y creamos un 
         //array con solo los ids
         $array_ids = array_map(function ($nota) {
@@ -114,11 +113,14 @@ class NotaRepository implements INotaRepository {
         }, $this->arrayNotas
         );
 
-        $max_id = max($array_ids);
+        if (count($array_ids) > 0) {
+            $max_id = max($array_ids);
+        }
+        else{
+            $max_id=1;
+        }
 
         return ++$max_id;
     }
-    
-   
 
 }

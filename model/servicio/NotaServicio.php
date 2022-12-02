@@ -24,9 +24,9 @@ class NotaServicio {
     /* Get note by id */
 
     public function getNoteById($id) {
-        if (is_null($id)) {
-            return false;
-        }
+//        if (is_null($id)) {
+//            return false;
+//        }
         return $this->repository->getNotaById($id);
     }
 
