@@ -3,6 +3,21 @@
 require_once dirname(__FILE__, 2) . DIRECTORY_SEPARATOR . 'config/config.php';
 require_once dirname(__FILE__, 2) . DIRECTORY_SEPARATOR . 'includes/autoload.php';
 
+
+//$visitas = 0;
+//if (!isset($_COOKIE[VISITAS_COOKIE_KEY])) {
+//    $visitas = 1;
+//} else {
+//    $visitas = $_COOKIE[VISITAS_COOKIE_KEY];
+//    $visitas++;
+//}
+//setcookie(VISITAS_COOKIE_KEY, $visitas, time() + 60 * 60 * 24 * 30);
+$visitasService = new VisitasServicio();
+
+if(isset($_POST["reset"])){
+    $visitasService->reset();
+}
+
 if (!isset($_GET["controller"])) {
     $_GET["controller"] = DEFAULT_CONTROLLER;
 }
