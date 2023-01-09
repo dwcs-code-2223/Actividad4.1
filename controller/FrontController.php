@@ -1,8 +1,10 @@
 <?php
 
+ob_start();
+echo "Hola";
+
 require_once dirname(__FILE__, 2) . DIRECTORY_SEPARATOR . 'config/config.php';
 require_once dirname(__FILE__, 2) . DIRECTORY_SEPARATOR . 'includes/autoload.php';
-
 
 //$visitas = 0;
 //if (!isset($_COOKIE[VISITAS_COOKIE_KEY])) {
@@ -14,7 +16,7 @@ require_once dirname(__FILE__, 2) . DIRECTORY_SEPARATOR . 'includes/autoload.php
 //setcookie(VISITAS_COOKIE_KEY, $visitas, time() + 60 * 60 * 24 * 30);
 $visitasService = new VisitasServicio();
 
-if(isset($_POST["reset"])){
+if (isset($_POST["reset"])) {
     $visitasService->reset();
 }
 
@@ -47,10 +49,17 @@ if (method_exists($controller, $_GET["action"])) {
     //Se establecen los datos que devuelve el controlador  para que estén disponibles para la vista
     $dataToView["data"] = $controller->{$_GET["action"]}();
 }
+//No podemos modificar la cabecera después de hacer el primer flush
+//setcookie("testCookie", "test", time() + 60 * 60);
+//ob_flush();
 
 
 /* Load views */
 require_once dirname(__FILE__, 2) . DIRECTORY_SEPARATOR . 'view/template/header.php';
 require_once dirname(__FILE__, 2) . DIRECTORY_SEPARATOR . 'view/' . $controller->view . '.php';
 require_once dirname(__FILE__, 2) . DIRECTORY_SEPARATOR . 'view/template/footer.php';
+
+//If output buffering is still active when the script ends, PHP outputs the contents automatically. 
+//setcookie("testCookie", "test", time() + 60 * 60);
+ob_end_flush();
 ?>
